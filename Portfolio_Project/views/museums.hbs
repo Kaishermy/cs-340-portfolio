@@ -1,0 +1,39 @@
+<h1>Museums</h1>
+<div class="pageDescription">
+    <p>View and manipulate the Museums table</p>
+</div>
+
+{{! READ table }}
+<table>
+    <thead>
+        <tr>
+            <th>Museum ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Max Capacity</th>
+            <th>Delete?</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the relevant entries }}
+        {{#each museums}}
+        <tr>
+            <td>{{this.museumID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.location}}</td>
+            <td>{{this.maxCapacity}}</td>
+            
+            {{! DELETE form }}
+            <form onsubmit="return confirm('Are you sure?');">
+                <input type='hidden' name='delete_museum_id' value='{{this.museumID}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

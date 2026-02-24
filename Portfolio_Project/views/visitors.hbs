@@ -1,0 +1,101 @@
+<h1>Visitors</h1>
+<div class="pageDescription">
+    <p>View and manipulate the Visitors table</p>
+</div>
+
+{{! READ table }}
+<table>
+    <thead>
+        <tr>
+            <th>Vistor ID</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email Address</th>
+            <th>Delete?</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the relevant entries }}
+        {{#each visitors}}
+        <tr>
+            <td>{{this.visitorID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.phoneNum}}</td>
+            <td>{{this.email}}</td>
+
+            {{! DELETE form }}
+            <form id='onsubmit="return confirm('Are you sure?');">
+                <input type='hidden' name='delete_visitor_id' value='{{this.visitorID}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Create a Visitor</h2>
+<form class='cuForm' id='create_visitor_form'>
+    <label for='create_visitor_name'>Name: </label>
+    <input type='text' name='create_visitor_name' id='create_visitor_name' required />
+
+    <label for='create_visitor_phoneNum'>Phone Number: </label>
+    <input type='text' name='create_visitor_phoneNum' id='create_visitor_phoneNum' required />
+
+    <label for='create_visitor_email'>Email:</label>
+    <input type='text' name='create_visitor_email' id='create_visitor_email' required />
+
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<h2>Update a Visitor</h2>
+<form class='cuForm' id='update_visitor_form'>
+    <label for='update_visitor_visitorID'>Visitor to Update: </label>
+    <select name='update_visitor_visitorID' 
+        id='update_visitor_visitorID' 
+        onchange="fillVisitorFields()" 
+        required>
+
+        <option value='' disabled selected>Select a Visitor</option>
+
+        {{#each visitors}}
+        <option 
+            value='{{this.visitorID}}'
+            data-name='{{this.name}}'
+            data-phone='{{this.phoneNum}}'
+            data-email='{{this.email}}'>
+
+            {{this.visitorID}} - {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_visitor_name'>Name: </label>
+    <input type='text' name='update_visitor_name' id='update_visitor_name' />
+
+    <label for='update_visitor_phoneNum'>Phone Number: </label>
+    <input type='text' name='update_visitor_phoneNum' id='update_visitor_phoneNum' />
+
+    <label for='update_visitor_email'>Email: </label>
+    <input type='text' name='update_visitor_email' id='update_visitor_email' />
+
+    <input type='submit' />
+</form>
+
+{{! Load the data matching the selected visitorID in the empty fields }} 
+<script>
+function fillVisitorFields() {
+    const select = document.getElementById("update_visitor_visitorID");
+    const selectedOption = select.options[select.selectedIndex];
+
+    document.getElementById("update_visitor_name").value = selectedOption.dataset.name || "";
+    document.getElementById("update_visitor_phoneNum").value = selectedOption.dataset.phone || "";
+    document.getElementById("update_visitor_email").value = selectedOption.dataset.email || "";
+}
+</script>

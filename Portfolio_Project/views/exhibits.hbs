@@ -1,0 +1,47 @@
+<h1>Exhibits</h1>
+<div class="pageDescription">
+    <p>View and manipulate the Exhibits table</p>
+</div>
+
+{{! READ table }}
+<table>
+    <thead>
+        <tr>
+            <th>Exhibit ID</th>
+            <th>Museum Name</th>
+            <th>Title</th>
+            <th>Theme</th>
+            <th>Art Piece Count</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Daily Maintenance Cost</th>
+            <th>Delete?</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the relevant entries }}
+        {{#each exhibits}}
+        <tr>
+            <td>{{this.exhibitID}}</td>
+            <td>{{this.museumName}}</td>
+            <td>{{this.title}}</td>
+            <td>{{this.theme}}</td>
+            <td>{{this.artPieceCount}}</td>
+            <td>{{this.startDate}}</td>
+            <td>{{this.endDate}}</td>
+            <td>{{this.dailyMaintenanceCost}}</td>
+
+            {{! DELETE form }}
+            <form onsubmit="return confirm('Are you sure?');">
+                <input type='hidden' name='delete_exhibit_id' value='{{this.exhibitID}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

@@ -1,0 +1,149 @@
+<h1>Visits</h1>
+<div class="pageDescription">
+    <p>View and manipulate the Visits table</p>
+</div>
+
+{{! READ table }}
+<table>
+    <thead>
+        <tr>
+            <th>Visit ID</th>
+            <th>Visitor Name</th>
+            <th>Museum Name</th>
+            <th>Visit Date</th>
+            <th>Ticket Type</th>
+            <th>Ticket Price</th>
+            <th>Delete?</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the relevant entries }}
+        {{#each visits}}
+        <tr>
+            <td>{{this.visitID}}</td>
+            <td>{{this.visitorName}}</td>
+            <td>{{this.museumName}}</td>
+            <td>{{this.visitDate}}</td>
+            <td>{{this.ticketType}}</td>
+            <td>{{this.ticketPrice}}</td>
+
+            {{! DELETE form }}
+            <form onsubmit="return confirm('Are you sure?');">
+                <input type='hidden' name='delete_visit_id' value='{{this.visitID}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Create a Visit</h2>
+<form class='cuForm' id='create_visit_form'>
+    <label for='create_visit_visitorName'>Visitor Name: </label>
+    <select name='create_visit_visitorName' id='create_visit_visitorName'>
+        <option value='' disabled selected>Select a Visitor</option>
+        {{#each visitors}}
+        <option value='{{this.visitorID}}' required>
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='create_visit_museumName'>Museum Name: </label>
+    <select name='create_visit_museumName' id='create_visit_museumName'>
+        <option value='' disabled selected>Select a Museum</option>
+        {{#each museums}}
+        <option value='{{this.museumID}}' required>
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='create_visit_visitDate'>Visit Date:</label>
+    <input type='date' name='create_visit_visitDate' id='create_visit_visitDate' required />
+
+    <label for='create_visit_ticketType'>Ticket Type:</label>
+    <input type='text' name='create_visit_ticketType' id='create_visit_ticketType' required />
+
+    <label for='create_visit_ticketPrice'>Ticket Price:</label>
+    <input type='number' name='create_visit_ticketPrice' id='create_visit_ticketPrice' required />
+
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<h2>Update a Visit</h2>
+<form class='cuForm' id='update_visit_form'>
+    <label for='update_visit_visitID'>Visit to Update: </label>
+    <select name='update_visit_visitID'
+        id='update_visit_visitID'
+        onchange="fillVisitFields()"
+        required>
+
+        <option value='' disabled selected>Select a Visit</option>
+        
+        {{#each visits}}
+        <option 
+            value='{{this.visitID}}'
+            data-visitor-name='{{this.visitorName}}'
+            data-museum-name='{{this.museumName}}'
+            data-visit-date='{{this.visitDate}}'
+            data-ticket-type='{{this.ticketType}}'
+            data-ticket-price='{{this.ticketPrice}}'>
+
+            {{this.visitID}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_visit_visitorName'>Visitor Name: </label>
+    <select name='update_visit_visitorName' id='update_visit_visitorName'>
+        <option value='' disabled selected>Select a Visitor</option>
+        {{#each visitors}}
+        <option value='{{this.name}}' required>
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_visit_museumName'>Museum Name: </label>
+    <select name='update_visit_museumName' id='update_visit_museumName'>
+        <option value='' disabled selected>Select a Museum</option>
+        {{#each museums}}
+        <option value='{{this.name}}' required>
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_visit_visitDate'>Visit Date: </label>
+    <input type='date' name='update_visit_visitDate' id='update_visit_visitDate' required />
+
+    <label for='update_visit_ticketType'>Ticket Type: </label>
+    <input type='text' name='update_visit_ticketType' id='update_visit_ticketType' required />
+
+    <label for='update_visit_ticketPrice'>Ticket Price: </label>
+    <input type='number' name='update_visit_ticketPrice' id='update_visit_ticketPrice' required />
+
+    <input type='submit' />
+</form>
+
+{{! Load the data matching the selected visitID in the empty fields }} 
+<script>
+function fillVisitFields() {
+    const select = document.getElementById("update_visit_visitID");
+    const selectedOption = select.options[select.selectedIndex];
+
+    document.getElementById("update_visit_visitorName").value = selectedOption.dataset.visitorName || "";
+    document.getElementById("update_visit_museumName").value = selectedOption.dataset.museumName || "";
+    document.getElementById("update_visit_visitDate").value = selectedOption.dataset.visitDate || "";
+    document.getElementById("update_visit_ticketType").value = selectedOption.dataset.ticketType || "";
+    document.getElementById("update_visit_ticketPrice").value = selectedOption.dataset.ticketPrice || "";
+}
+</script>

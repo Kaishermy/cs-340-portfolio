@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Many Museum Network Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        {{! This is how user's navigate to each page.
+        The text "BSG People" is a link that sends a GET request
+        for /bsg-people. This is caught in app.js, which renders
+        bsg-people.hbs and anything else needed for that page. }}
+        Navigation: 
+        <a href="/">Home</a>
+        <a href="/exhibits">Exhibits</a>
+        <a href="/museums">Museums</a>
+        <a href="/staff">Staff</a>
+        <a href="/visitors">Visitors</a>
+        <a href="/visits">Visits</a>
+    </nav>
+
+    {{! This is where each page is swapped in;
+    everything around this (nav bar, for instance) is always present on the page. }}
+    {{{body}}}
+
+</body>
+</html>

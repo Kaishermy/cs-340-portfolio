@@ -1,0 +1,2 @@
+# Portfolio Project Credits
+All files are based on templates provided by the Oregon State University CS 340 Canvas course materials. These templates were populated with code by Kevin Phillips and Kai Sherman.

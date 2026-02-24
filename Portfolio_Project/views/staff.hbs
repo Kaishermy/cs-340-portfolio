@@ -1,0 +1,45 @@
+<h1>Staff</h1>
+<div class="pageDescription">
+    <p>View and manipulate the Staff table</p>
+</div>
+
+{{! READ table }}
+<table>
+    <thead>
+        <tr>
+            <th>Staff ID</th>
+            <th>Museum Name</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Hourly Pay</th>
+            <th>Hire Date</th>
+            <th>Is Full Time?</th>
+            <th>Delete?</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the relevant entries }}
+        {{#each staff}}
+        <tr>
+            <td>{{this.staffID}}</td>
+            <td>{{this.museumName}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.role}}</td>
+            <td>{{this.hourlyPay}}</td>
+            <td>{{this.hireDate}}</td>
+            <td>{{this.isFullTime}}</td>
+            
+            {{! DELETE form }}
+            <form onsubmit="return confirm('Are you sure?');">
+                <input type='hidden' name='delete_staff_id' value='{{this.staffID}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
