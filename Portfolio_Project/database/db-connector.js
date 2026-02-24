@@ -5,10 +5,10 @@ let mysql = require('mysql2')
 const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit   : 10,
-    host              : 'classmysql.engr.oregonstate.edu',
-    user              : 'cs340_shermkai',
-    password          : '4637',
-    database          : 'cs340_shermkai'
+    host              : '<host-name>',
+    user              : '<user-name>',
+    password          : '<password>',
+    database          : '<database-name>'
 }).promise(); // This makes it so we can use async / await rather than callbacks
 
 // Export it for use in our application
