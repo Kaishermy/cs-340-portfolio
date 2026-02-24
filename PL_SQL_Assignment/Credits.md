@@ -1,0 +1,2 @@
+# PL/SQL Assignment Credits
+All file comments are based on templates provided by the Oregon State University CS 340 Canvas course materials. Microsoft Copilot was used to generate some PL/SQL. Unless specified otherwise, all other SQL queries are written by Kai Sherman.

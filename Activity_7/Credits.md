@@ -1,0 +1,2 @@
+# Activity 7 Credits
+All SQL queries are provided by the Oregon State University CS 340 Canvas course materials. This activity is also subject to the attributions for Activities 4, 5, and 6 as it builds off of those SQL queries.
