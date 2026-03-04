@@ -5,8 +5,14 @@ The portfolio project was written by Kevin Phillips and Kai Sherman and was inte
 
 The DDL file is provided for running the project in a local MySQL instance. Doing so will require the necessary changes in db-connector.js to run the project. Once the repository has been cloned, the DDL.sql file has executed, and necessary db-connector.js changes have been made, you can activate the website by entering:
 
-`$ npm run production`
+```
+$ npm run production
+```
 
 It can subsequently be stopped by entering:
 
-`$ npm run stop_production`
+```
+$ npm run stop_production
+```
+
+By default, the site runs on port 40508.
